@@ -13,16 +13,6 @@ As such, please read the documentation for each package (in the README) on which
 
 Generally, it is recommended to wait until packages are merged into `Nixpkgs` to use them, rather than relying on `gvpkgs`.
 
-## Packages
-
-| Package         | Description                                                                                               | Status  |
-| --------------- | --------------------------------------------------------------------------------------------------------- | ------- |
-| `fregec`        | Compiler for [Frege](https://github.com/Frege/frege), a Haskell-like pure functional language for the JVM | Testing |
-| `moonscript`    | [MoonScript](https://moonscript.org/), a dynamic scripting language that compiles to Lua                  | Stable  |
-| `rust-analyzer` | [rust-analyzer](https://rust-analyzer.github.io/), Rust language server                                   | Stable  |
-
-Supports `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`.
-
 ## Usage
 
 Add `gvpkgs` to your flake inputs:
@@ -73,3 +63,13 @@ Use this to run a package from here:
 ```BASH
 nix run github:givikuna/gvpkgs#rust-analyzer
 ```
+
+## Packages
+
+| Package         | Description                                                                                               | Status  |
+| --------------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| `fregec`        | Compiler for [Frege](https://github.com/Frege/frege), a Haskell-like pure functional language for the JVM | Testing |
+| `moonscript`    | [MoonScript](https://moonscript.org/), a dynamic scripting language that compiles to Lua                  | Stable  |
+| `rust-analyzer` | [rust-analyzer](https://rust-analyzer.github.io/), Rust language server                                   | Stable  |
+
+Supports `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`.
