@@ -1,11 +1,11 @@
 {
-  pkgs,
+  nixpkgs,
   fenix,
   system,
 }:
 
 let
-  inherit (pkgs) lib;
+  inherit (nixpkgs) lib;
 
   entries = builtins.readDir ./.;
 
@@ -14,7 +14,7 @@ let
 in
 lib.mapAttrs (
   name: _:
-  pkgs.callPackage (./. + "/${name}/package.nix") {
-    inherit fenix system;
+  nixpkgs.callPackage (./. + "/${name}/package.nix") {
+    inherit fenix nixpkgs system;
   }
 ) packageDirs

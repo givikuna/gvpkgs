@@ -1,3 +1,3 @@
-{ lua52Packages, ... }:
+{ nixpkgs, system, ... }:
 
-lua52Packages.moonscript
+nixpkgs.legacyPackages.${system}.lua52Packages.moonscript

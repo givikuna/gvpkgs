@@ -25,11 +25,8 @@
     {
       packages = forAllSystems (
         system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
         import ./pkgs {
-          inherit pkgs fenix system;
+          inherit nixpkgs fenix system;
         }
       );
     };
