@@ -5,19 +5,26 @@
 }:
 
 let
-  inherit (nixpkgs) lib;
+  pkgs = nixpkgs.legacyPackages.${system};
+  gvlib = import ../lib {
+    # pass lib
+  };
+
+  customLib = pkgs.lib.extend (
+    final: prev: {
+      maintainers = prev.maintainers // gvlib.maintainers;
+    }
+  );
+
+  callPackage = customLib.callPackageWith (
+    pkgs
+    // {
+      inherit fenix nixpkgs system;
+      lib = customLib;
+    }
+  );
 
   entries = builtins.readDir ./.;
-
-  packageDirs = lib.filterAttrs (name: type: type == "directory") entries;
-
+  packageDirs = customLib.filterAttrs (name: type: type == "directory") entries;
 in
-lib.mapAttrs (
-  name: _:
-  let
-    pkgs = nixpkgs.legacyPackages.${system};
-  in
-  (with pkgs; callPackage) (./. + "/${name}/package.nix") {
-    inherit fenix nixpkgs system;
-  }
-) packageDirs
+customLib.mapAttrs (name: _: callPackage (./. + "/${name}/package.nix") { }) packageDirs
