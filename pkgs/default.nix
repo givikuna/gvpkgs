@@ -14,7 +14,10 @@ let
 in
 lib.mapAttrs (
   name: _:
-  nixpkgs.callPackage (./. + "/${name}/package.nix") {
+  let
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
+  (with pkgs; callPackage) (./. + "/${name}/package.nix") {
     inherit fenix nixpkgs system;
   }
 ) packageDirs
