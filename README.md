@@ -74,4 +74,38 @@ nix run github:givikuna/gvpkgs#rust-analyzer
 | `ballerina`     | [ballerina](https://ballerina.io/), the programming language compiler, latest version.                    | Testing |
 | `livescript`    | [livescript](https://livescript.net/), livescript compiler, latest version.                               | Stable  |
 
+## Nixpkgs Staging (Tests Only)
+
+Upstream-bound packages structured to mirror real `nixpkgs` (`pkgs/by-name` + `maintainers/maintainer-list.nix`).
+These are exposed only under `checks` in `flake.nix`, not under `packages`.
+
+### Adding a Package
+
+1. Create `nixpkgs/pkgs/by-name/<first-two-chars>/<name>/package.nix`.
+2. Stage new files with `git add nixpkgs/` so Nix flakes can see them.
+
+### Testing
+
+Just follow this:
+
+```bash
+nix flake check
+
+nix build .#checks.x86_64-linux.fregec
+nix build .#checks.x86_64-linux.fregec-test-hello
+
+nix-build ./nixpkgs -A fregec
+nix-build ./nixpkgs -A fregec.tests.hello
+```
+
+### Testing Workflow
+
+After creating the files, stage them (`git add .`) so flake evaluation sees them, then run:
+
+- **`nix flake check`** — validates `pkgs/by-name` sharding and `meta`, builds every package in `nixpkgs/pkgs/by-name`, and executes all `passthru.tests.*`.
+- **`nix build .#checks.<system>.<pkg>`** — builds one staged package in isolation.
+- **`nix-build ./nixpkgs -A <pkg>` / `-A <pkg>.tests.<name>`** — mirrors the exact commands you will run once you copy `pkgs/by-name/<sh>/<name>/package.nix` into a real `nixpkgs` clone.
+
+## Platforms
+
 Supports `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`.

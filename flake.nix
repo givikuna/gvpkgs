@@ -29,5 +29,12 @@
           inherit nixpkgs fenix system;
         }
       );
+
+      checks = forAllSystems (
+        system:
+        import ./nixpkgs/tests {
+          inherit nixpkgs system;
+        }
+      );
     };
 }
