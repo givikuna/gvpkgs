@@ -68,10 +68,10 @@ nix run github:givikuna/gvpkgs#rust-analyzer
 
 | Package         | Description                                                                                               | Status  |
 | --------------- | --------------------------------------------------------------------------------------------------------- | ------- |
-| `fregec`        | Compiler for [Frege](https://github.com/Frege/frege), a Haskell-like pure functional language for the JVM | Testing |
+| `fregec`        | Compiler for [Frege](https://github.com/Frege/frege), a Haskell-like pure functional language for the JVM | Stable  |
 | `moonscript`    | [MoonScript](https://moonscript.org/), a dynamic scripting language that compiles to Lua                  | Stable  |
 | `rust-analyzer` | [rust-analyzer](https://rust-analyzer.github.io/), Rust language server                                   | Stable  |
 | `ballerina`     | [ballerina](https://ballerina.io/), the programming language compiler, latest version.                    | Testing |
-| `livescript`    | [livescript](https://livescript.net/), livescript compiler, latest version.                               | Testing |
+| `livescript`    | [livescript](https://livescript.net/), livescript compiler, latest version.                               | Stable  |
 
 Supports `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`.
