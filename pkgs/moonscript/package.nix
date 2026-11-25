@@ -1,3 +1,9 @@
-{ nixpkgs, system, ... }:
-
-nixpkgs.legacyPackages.${system}.lua52Packages.moonscript
+{
+  nixpkgs,
+  system,
+  ...
+}:
+with nixpkgs;
+with legacyPackages.${system};
+with lua52Packages;
+moonscript
